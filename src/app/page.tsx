@@ -6,10 +6,11 @@ import { Radio } from 'lucide-react';
 import { useLiveStreams } from '@/hooks/useLiveStreams';
 
 export default function HomePage() {
-  // 실시간 방송 데이터
-  const liveStreams: Stream[] = useLiveStreams();
+  // 실시간 방송 데이터 / LIVE 필터
+  const liveStreams: Stream[] = useLiveStreams().filter(
+    s => s.status === 'LIVE'
+  );
 
-  // 메인 방송 + 사이드 방송 분리
   const latestStream = liveStreams[0];
   const sidebarStreams = liveStreams.slice(1);
 
@@ -19,7 +20,7 @@ export default function HomePage() {
         <header className="py-4 border-b border-gray-700 mb-8">
           <h1 className="text-3xl font-bold text-white flex items-center mb-2">
             <Radio className="w-7 h-7 mr-2 text-[#00FFA3] fill-[#00FFA3]" />
-            실시간 라이브 홈
+            파지직
             <span className="text-[#00FFA3] ml-2">({liveStreams.length}개 방송 중)</span>
           </h1>
         </header>
@@ -59,7 +60,7 @@ export default function HomePage() {
         )}
 
         <footer className="mt-16 pt-8 border-t border-gray-800 text-xs text-gray-600 text-center">
-          <p>© {new Date().getFullYear()} Catenoid.</p>
+          <p>© 2025 Catenoid.</p>
         </footer>
       </div>
     </div>

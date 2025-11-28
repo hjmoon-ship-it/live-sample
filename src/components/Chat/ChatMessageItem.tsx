@@ -9,19 +9,19 @@ const colors = [
   "#1ABC9C", "#E67E22", "#3498DB", "#9B59B6", "#2ECC71", "#E74C3C"
 ];
 
-const nicknameColorMap = new Map<string, string>();
+const userIdColorMap = new Map<string, string>();
 
-const getColorByNickname = (nickname: string) => {
-  if (nicknameColorMap.has(nickname)) {
-    return nicknameColorMap.get(nickname)!;
+const getColorByUserId = (userId: string) => {
+  if (userIdColorMap.has(userId)) {
+    return userIdColorMap.get(userId)!;
   }
   const color = colors[Math.floor(Math.random() * colors.length)];
-  nicknameColorMap.set(nickname, color);
+  userIdColorMap.set(userId, color);
   return color;
 };
 
 export const ChatMessageItem = ({ msg }: { msg: ChatMessage }) => {
-  const color = msg.color === "#FFFFFF" ? "#FFFFFF" : getColorByNickname(msg.user);
+  const color = msg.color === "#FFFFFF" ? "#FFFFFF" : getColorByUserId(msg.userId);
 
   return (
     <div className="flex text-sm leading-snug">
